@@ -1,0 +1,117 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-form/iron-form.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+<link rel="import" href="../paper-dialog/paper-dialog.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../paper-input/paper-input.html">
+<link rel="import" href="../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../iron-a11y-keys/iron-a11y-keys.html">
+
+<!--
+`ct-authentication-dialog`
+Dialog for user authentication
+
+@demo demo/index.html 
+-->
+
+<dom-module id="ct-authentication-dialog">
+  <template>
+    <style include="sign-in-style"></style>
+
+    <div title>
+      <img src="[[ _domainLogo ]]" alt="[[ domainName ]]">
+    </div>
+
+    <paper-dialog no-cancel-on-outside-click no-cancel-on-esc-key always-on-top id="signInDialog">
+      <iron-a11y-keys id="a11y" target="[[form]]" keys="enter" on-keys-pressed="_signIn"></iron-a11y-keys>
+      <form is="iron-form" id="form" method="post" action="/authenticate">
+        <paper-input name="domainId" label="Domain ID" value="[[ domainId ]]" required hidden></paper-input>
+        <paper-input name="username" label="Username" required autocomplete="username"></paper-input>
+        <paper-input name="password" label="Password" type="password" required autocomplete="current-password"></paper-input>
+        <p class="footnote"><a href="forgot-password?domain_id=@domainId">Forgot Password</a></p>
+        <paper-button raised on-tap="_signIn" id="signInBtn">Login</paper-button>
+        <p id="errorMessage" hidden></p>
+      </form>
+      <p class="footnote" hidden$="[[ !signUpEnabled ]]">Not registered? <a href="#">Create an account</a></p>
+    </paper-dialog>
+
+    <p class="welcome" hidden$="[[ !_authenticated ]]">Welcome</p>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'ct-authentication-dialog',
+
+      properties: {
+        domainId: String,
+        domainName: String,
+        signUpEnabled: {
+          type: Boolean,
+          value: false
+        },
+        next: String
+      },
+
+      listeners: {
+        'iron-form-error': 'signInFailed',
+        'iron-form-response': 'signedInSucceeded'
+      },
+
+      observers: [
+        '_toggleDialog(_authenticated)',
+        '_setDomainSpecifics(domainId)'
+      ],
+
+      ready: function () {
+        this._authenticated = false;
+      },
+
+      _setDomainSpecifics: function() {
+        this._domainLogo = 'http://resource.centular.com/' + this.domainId + '/logo.jpg'
+      },
+
+      _signIn: function() {
+        this.$.signInBtn.disabled = true;
+
+        if (!this.$.form.validate()) {
+          return;
+        }
+
+        this.$.form.submit();
+      },
+
+      signInFailed: function(event, response) {
+        this.$.signInBtn.disabled = false;
+
+        if (response.request.status === 401) {
+          this.$.errorMessage.innerHTML = 'Sign in failed. The username or password may be incorrect.';
+          this.$.errorMessage.hidden = false;
+        }
+        else {
+          this.$.errorMessage.innerHTML = 'Something went wrong. ' + response.request.status;
+          this.$.errorMessage.hidden = false;
+        }
+      },
+
+      signedInSucceeded: function(event, request) {
+        this._authenticated = true;
+        this.$.signInBtn.disabled = false;
+
+        if (this.next) {
+          window.location = this.next;
+        }
+      },
+
+      _toggleDialog: function(_authenticated) {
+        if (this._authenticated) {
+          this.$.signInDialog.close();
+        }
+        else {
+          this.$.signInDialog.open();
+        }
+      }
+
+    });
+  </script>
+</dom-module>
