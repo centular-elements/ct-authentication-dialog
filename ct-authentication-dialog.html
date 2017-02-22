@@ -64,13 +64,13 @@ Dialog for user authentication
       ],
 
       ready: function () {
+        this._passwordResetRequestUri =
+                'request-password-reset?domain_id=' + this.domainId + '&domain_name=' + this.domainName + '&next=' + window.location
         this._authenticated = false;
       },
 
       _setDomainSpecifics: function() {
         this._domainLogo = 'http://resource.centular.com/' + this.domainId + '/logo.jpg'
-        this._passwordResetRequestUri =
-                'request-password-reset?domain_id=' + this.domainId + '&domain_name=' + this.domainName + '&next=' + window.location
       },
 
       _signIn: function() {
