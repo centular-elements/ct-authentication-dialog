@@ -65,7 +65,7 @@ Dialog for user authentication
 
       ready: function () {
         this._passwordResetRequestUri =
-                'request-password-reset?domain_id=' + this.domainId + '&domain_name=' + this.domainName + '&next=' + window.location;
+                'request-password-reset?domain_id=' + this.domainId + '&domain_name=' + this.domainName + '&next=' + encodeURI(window.location);
         this._authenticated = false;
       },
 
