@@ -1,7 +1,7 @@
 {
-  "name": "ct-authentication-dialog",
+  "name": "ct-sign-in",
   "description": "Dialog for user authentication",
-  "main": "ct-authentication-dialog.html",
+  "main": "ct-sign-in.html",
   "dependencies": {
     "polymer": "Polymer/polymer#^1.4.0",
     "paper-input": "PolymerElements/paper-input#^1.1.23",

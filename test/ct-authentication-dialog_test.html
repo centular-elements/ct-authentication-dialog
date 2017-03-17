@@ -4,25 +4,25 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>ct-authentication-dialog test</title>
+    <title>ct-sign-in test</title>
 
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
     <script src="../../web-component-tester/browser.js"></script>
 
-    <link rel="import" href="../ct-authentication-dialog.html">
+    <link rel="import" href="../ct-sign-in.html">
   </head>
   <body>
     <test-fixture id="basic">
       <template>
-        <ct-authentication-dialog></ct-authentication-dialog>
+        <ct-sign-in></ct-sign-in>
       </template>
     </test-fixture>
 
     <script>
-      suite('ct-authentication-dialog', function() {
+      suite('ct-sign-in', function() {
         test('instantiating the element works', function() {
           var element = fixture('basic');
-          assert.equal(element.is, 'ct-authentication-dialog');
+          assert.equal(element.is, 'ct-sign-in');
         });
       });
     </script>

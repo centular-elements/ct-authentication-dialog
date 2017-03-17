@@ -1,4 +1,4 @@
-# \<ct-authentication-dialog\>
+# \<ct-sign-in\>
 
 Dialog for user authentication
 
