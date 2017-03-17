@@ -11,18 +11,11 @@
     <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
     <link rel="import" href="../ct-sign-in.html">
+    <link rel="import" href="../sign-in-style.html">
 
-    <style is="custom-style" include="demo-pages-shared-styles">
-    </style>
+    <style is="custom-style" include="demo-pages-shared-styles sign-in-style"></style>
   </head>
   <body>
-    <div class="vertical-section-container centered">
-      <h3>Basic ct-sign-in demo</h3>
-      <demo-snippet>
-        <template>
-          <ct-sign-in domain-id="5134335d-de82-466d-96c2-c2717ade65d1" sign-up-enabled next=""></ct-sign-in>
-        </template>
-      </demo-snippet>
-    </div>
+    <ct-sign-in client-id="postman" domain-id="5134335d-de82-466d-96c2-c2717ade65d1" domain-name="Demo Domain" sign-up-enabled="true" next=""></ct-sign-in>
   </body>
 </html>
