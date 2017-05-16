@@ -9,11 +9,13 @@
 <link rel="import" href="../paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../iron-a11y-keys/iron-a11y-keys.html">
 
+<link rel="import" href="../ct-shared-styles/ct-application-theme.html">
+
 <!--
 `ct-sign-in`
 Dialog for user authentication
 
-@demo demo/index.html 
+@demo demo/index.html
 -->
 
 <dom-module id="ct-sign-in">
@@ -40,15 +42,22 @@ Dialog for user authentication
       #errorMessage {
         color: firebrick;
       }
+      .box {
+        background: #fff;
+      }
     </style>
 
-    <div title>
+    <!-- <div title>
       <img class="domain-logo" src="[[ _domainLogo ]]" alt="[[ domainName ]]">
-      <p class="title">Sign in</p>
-    </div>
 
-    <div class="layout horizontal center-justified">
+    </div> -->
+
+    <div class="layout horizontal center-justified sign-in-style">
       <paper-material id="signInBox" class="box" elevation="1">
+        <div title>
+          <img class="domain-logo" src="[[ _domainLogo ]]" alt="[[ domainName ]]">
+        </div>
+        <h4>Sign In</h4>
         <iron-a11y-keys id="a11y" target="[[form]]" keys="enter" on-keys-pressed="_signIn"></iron-a11y-keys>
         <form class="layout vertical center-justified" is="iron-form" id="form" method="post" action="/authenticate">
           <paper-input name="domainId" label="Domain ID" value="[[ domainId ]]" required hidden></paper-input>
