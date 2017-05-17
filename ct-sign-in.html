@@ -1,12 +1,12 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../iron-form/iron-form.html">
 <link rel="import" href="../iron-ajax/iron-ajax.html">
-<link rel="import" href="../iron-icons/iron-icons.html">
+
 <link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../paper-material/paper-material.html">
 <link rel="import" href="../paper-button/paper-button.html">
 <link rel="import" href="../paper-input/paper-input.html">
-<link rel="import" href="../paper-icon-button/paper-icon-button.html">
+
 <link rel="import" href="../iron-a11y-keys/iron-a11y-keys.html">
 
 <link rel="import" href="../ct-shared-styles/ct-application-theme.html">
@@ -23,6 +23,23 @@ Dialog for user authentication
     <style include="iron-flex iron-flex-alignment sign-in-style">
       :host {
         display: block;
+        --paper-input-container:{
+          border-top: 1px solid #ccc;
+          border-left: 1px solid #ccc;
+          border-right: 1px solid #ccc;
+          border-bottom: none;
+          padding: 0 !important;
+        };
+
+        --paper-input-container-input: {
+          text-overflow: ellipsis;
+          width: calc(100% - 20px);
+          margin-left: 10px;
+        };
+
+        --paper-input-container-label: {
+          margin-left: 10px;
+        };
       }
       div[title] {
         text-align: center;
@@ -35,6 +52,9 @@ Dialog for user authentication
       paper-button {
         padding: 10px;
         margin: 10px;
+      }
+      .domain-logo {
+        max-width: 180px;
       }
       .welcome-message {
         text-align: center;
