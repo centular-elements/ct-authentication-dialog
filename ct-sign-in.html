@@ -19,6 +19,7 @@ Dialog for user authentication
 
 <dom-module id="ct-sign-in">
   <template>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <style include="iron-flex iron-flex-alignment sign-in-style">
       :host {
         display: block;
@@ -76,14 +77,14 @@ Dialog for user authentication
         <div title>
           <img class="domain-logo" src="[[ _domainLogo ]]" alt="[[ domainName ]]">
         </div>
-        <h4>Sign In</h4>
+        <h4 class="text-center">Sign In</h4>
         <iron-a11y-keys id="a11y" target="[[form]]" keys="enter" on-keys-pressed="_signIn"></iron-a11y-keys>
         <form class="layout vertical center-justified" is="iron-form" id="form" method="post" action="/authenticate">
           <paper-input name="domainId" label="Domain ID" value="[[ domainId ]]" required hidden></paper-input>
           <paper-input class="username-password-input margin-10v" name="username" label="Username" required autocomplete="username"></paper-input>
           <paper-input class="username-password-input margin-10v" name="password" label="Password" type="password" required autocomplete="current-password"></paper-input>
           <p class="forgot-password-link layout horizontal center-justified margin-10v"><a href="[[ _passwordResetRequestUri ]]">Forgot password?</a></p>
-          <paper-button class="sign-in-button" raised on-tap="_signIn" id="signInBtn">Sign In</paper-button>
+          <paper-button class="sign-in-button btn-primary" raised on-tap="_signIn" id="signInBtn">Sign In</paper-button>
           <p id="errorMessage" hidden></p>
         </form>
         <p class="sign-up-text" hidden$="[[ !_signUpEnabled ]]">Not registered? <a class="sign-up-link" href="[[ _signUpUrl ]]">Create an account</a></p>
