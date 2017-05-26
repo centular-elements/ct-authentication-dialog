@@ -77,7 +77,6 @@ Dialog for user authentication
         <div title>
           <img class="domain-logo" src="[[ _domainLogo ]]" alt="[[ domainName ]]">
         </div>
-        <h4 class="text-center">Sign In</h4>
         <iron-a11y-keys id="a11y" target="[[form]]" keys="enter" on-keys-pressed="_signIn"></iron-a11y-keys>
         <form class="layout vertical center-justified" is="iron-form" id="form" method="post" action="/authenticate">
           <paper-input name="domainId" label="Domain ID" value="[[ domainId ]]" required hidden></paper-input>
